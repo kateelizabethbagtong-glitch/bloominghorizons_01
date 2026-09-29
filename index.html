@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blooming Horizons — Group 1 IPBA Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ==========================================================================
+       BLOOMING HORIZONS — BRIGHT GOLDISH-YELLOW THEME (PLAIN BACKGROUND)
+       ========================================================================== */
+
+    :root {
+      --bg-plain: #FCFAF5;
+      --bg-card: #FFFFFF;
+      --accent-gold: #D4AF37;
+      --accent-yellow: #F3E5AB;
+      --accent-soft-yellow: #FFF9E6;
+      --text-dark: #2C2A29;
+      --text-muted: #6B6560;
+      --border-gold: #E8DFB8;
+      --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.04);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-plain);
+      color: var(--text-dark);
+      line-height: 1.7;
+      padding-top: 90px;
+    }
+
+    /* Typography */
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      color: var(--text-dark);
+    }
+
+    /* Header & Navigation Bar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 75px;
+      background: rgba(252, 250, 245, 0.98);
+      border-bottom: 1px solid var(--border-gold);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 4%;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #8B6B11;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo small {
+      font-size: 0.75rem;
+      background: var(--accent-yellow);
+      padding: 2px 8px;
+      border-radius: 12px;
+      color: var(--text-dark);
+    }
+
+    .navbar ul {
+      display: flex;
+      list-style: none;
+      gap: 10px;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-weight: 500;
+      font-size: 0.9rem;
+      padding: 8px 14px;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: #8B6B11;
+      background-color: var(--accent-soft-yellow);
+      border: 1px solid var(--border-gold);
+    }
+
+    /* Page Visibility Controls */
+    .page-section {
+      display: none;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px 20px 80px;
+      animation: fadeIn 0.4s ease-in-out;
+    }
+
+    .page-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Hero Banner */
+    .hero {
+      text-align: center;
+      padding: 50px 25px;
+      background: linear-gradient(180deg, rgba(255, 249, 230, 0.9) 0%, rgba(252, 250, 245, 0.8) 100%);
+      border-radius: 24px;
+      border: 1px solid var(--border-gold);
+      margin-bottom: 40px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: #FFF;
+      border: 1px solid var(--accent-gold);
+      color: #8B6B11;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 50px;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 800px;
+      margin: 0 auto 20px;
+    }
+
+    /* Common Layout & Cards */
+    .page-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .page-header h2 {
+      font-size: 2.4rem;
+    }
+
+    .grid-2col {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-bottom: 30px;
+    }
+
+    .grid-3col {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .card, .feature-card, .member-card {
+      background: var(--bg-card);
+      padding: 30px;
+      border-radius: 20px;
+      border: 1px solid var(--border-gold);
+      box-shadow: var(--shadow-card);
+      margin-bottom: 24px;
+    }
+
+    .member-card {
+      margin-bottom: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .member-role {
+      display: inline-block;
+      background: var(--accent-soft-yellow);
+      color: #8B6B11;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border-gold);
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--accent-soft-yellow);
+      color: #8B6B11;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      border: 1px solid var(--border-gold);
+    }
+
+    .styled-list {
+      margin-top: 15px;
+      list-style: none;
+    }
+
+    .styled-list li {
+      padding: 10px 0;
+      border-bottom: 1px dashed var(--border-gold);
+      font-size: 0.98rem;
+    }
+
+    .styled-list li:last-child {
+      border-bottom: none;
+    }
+
+    .highlight-gold {
+      background: var(--accent-soft-yellow);
+      border: 1px solid var(--border-gold);
+      padding: 36px;
+      border-radius: 20px;
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .need-statement {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-style: italic;
+      color: #5A450B;
+      margin-top: 12px;
+      line-height: 1.6;
+    }
+
+    /* Detailed Table Styling */
+    .custom-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: #FFF;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border-gold);
+    }
+
+    .custom-table th, .custom-table td {
+      padding: 14px 18px;
+      text-align: left;
+      font-size: 0.92rem;
+      border-bottom: 1px solid var(--border-gold);
+    }
+
+    .custom-table th {
+      background-color: var(--accent-soft-yellow);
+      color: #8B6B11;
+      font-weight: 700;
+    }
+
+    /* Timeline */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .timeline-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      background: var(--bg-card);
+      padding: 28px;
+      border-radius: 18px;
+      border: 1px solid var(--border-gold);
+      box-shadow: var(--shadow-card);
+    }
+
+    .step-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #8B6B11;
+      background: var(--accent-soft-yellow);
+      border: 1px solid var(--border-gold);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: #FFF;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border-gold);
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="logo">
+      <span>🌸</span> Blooming Horizons <small>Group 1</small>
+    </div>
+    <nav>
+      <ul>
+        <li><a class="nav-link active" onclick="switchPage(event, 'home')">Home</a></li>
+        <li><a class="nav-link" onclick="switchPage(event, 'concept')">Topic & Audience</a></li>
+        <li><a class="nav-link" onclick="switchPage(event, 'standards')">Quality Benchmarks</a></li>
+        <li><a class="nav-link" onclick="switchPage(event, 'journey')">Research Journey</a></li>
+        <li><a class="nav-link" onclick="switchPage(event, 'members')">Members</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- PAGE 1: HOME OVERVIEW -->
+  <main id="home" class="page-section active">
+    <section class="hero">
+      <div class="hero-badge">✨ Group 1 — IPBA Streaming Project</div>
+      <h1>Cultivating Safe & Inclusive Digital Spaces</h1>
+      <p class="subtitle">A goldish-yellow floral portal bringing together six Experience Guides (EG 1–EG 6) into a comprehensive streaming portfolio designed to help students relax, learn, and socialize without toxic pressure.</p>
+    </section>
+
+    <section class="card">
+      <h2>Project Executive Summary & Foundational Intent</h2>
+      <p style="margin-bottom: 15px;">Every successful live stream starts with a clear vision, a deep understanding of audience behavior, and structured process thinking. Blooming Horizons is Group 1's final synthesis of empirical research collected across all project milestones. Rather than creating an overly competitive or skill-obsessed stream, our project focuses on creating a safe, inclusive digital lounge tailored specifically for 15-year-old high school students in the Philippines.</p>
+      
+      <p style="margin-bottom: 15px;">Through extensive digital ethnography, live chat monitoring, and direct survey feedback, our group discovered that teenage viewers watch streams after school primarily to unwind, reduce academic stress, and connect with peers in a non-judgmental community.</p>
+
+      <h3>Primary Strategic Objectives:</h3>
+      <ul class="styled-list">
+        <li><strong>Interactive Co-Op Casual Gaming:</strong> Shifting away from aggressive "try-hard" mechanics toward accessible, fun games like <em>Roblox</em>, <em>Mobile Legends</em>, and casual co-op titles.</li>
+        <li><strong>Active Dual-Channel Chat Moderation:</strong> Implementing dedicated co-host moderators so that viewer chat messages are acknowledged in real time rather than getting buried.</li>
+        <li><strong>Mobile & Bandwidth Optimization:</strong> Utilizing YouTube as our primary platform to accommodate students relying on mobile devices with limited data plans.</li>
+        <li><strong>Structured Multi-Format Media:</strong> Pairing 60-minute live interactive broadcasts with short, digestible clips (YouTube Shorts) to deliver quick study and lifestyle tips.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Core Definitions & Platform Selection Rationale</h2>
+      <p style="margin-bottom: 15px;"><strong>Definition of Streaming:</strong> Live streaming is the real-time transmission of synchronized audio and video data over the internet, allowing immediate bidirectional interaction between creators and viewers via chat, polls, and instant feedback.</p>
+      
+      <p><strong>Selected Platform (YouTube):</strong> Evaluated against Twitch and Facebook Gaming during EG 2, YouTube was selected due to its industry-leading search engine optimization (SEO), long-term VOD retention, ultra-fast global servers, and mobile playback stability for viewers with low-bandwidth connections.</p>
+    </section>
+  </main>
+
+  <!-- PAGE 2: TOPIC & AUDIENCE ANALYSIS -->
+  <main id="concept" class="page-section">
+    <section class="page-header">
+      <h2>Streaming Topic & Detailed Audience Analysis</h2>
+      <p>Bridging the gap between casual gaming, student mental wellness, and safe digital communities.</p>
+    </section>
+
+    <div class="grid-2col">
+      <div class="card">
+        <span class="badge">Streaming Concept</span>
+        <h3>Casual Co-Op Gaming & Interactive Lounge</h3>
+        <p style="margin-bottom: 12px;">A relaxed, non-competitive gaming stream featuring popular titles paired with live community Q&A sessions and relaxed chat interactions.</p>
+        <ul class="styled-list">
+          <li><strong>Primary Platform:</strong> YouTube (Optimized for mobile VOD retention & SEO)</li>
+          <li><strong>Broadcast Format:</strong> 60-Minute Structured Live Broadcasts</li>
+          <li><strong>Secondary Output:</strong> Under 1-minute YouTube Shorts showcasing stream highlights and practical hacks.</li>
+          <li><strong>Schedule Breakdown:</strong> 10m Welcome/Goal Setting, 35m Co-op Play, 15m Wrap-up Q&A.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <span class="badge">Target Audience Profile</span>
+        <h3>15-Year-Old Filipino High School Students</h3>
+        <p style="margin-bottom: 12px;">Teenage students seeking a cozy, welcoming escape after school hours to manage stress and socialize.</p>
+        <ul class="styled-list">
+          <li><strong>Demographics:</strong> 15 years old, High School Level, Filipino.</li>
+          <li><strong>Beliefs:</strong> Streams should be inclusive spaces where female gamers showcase competitive skills comfortably without experiencing toxicity.</li>
+          <li><strong>Attitudes:</strong> Values cozy environments, relatable creators, and supportive comment sections over elitist gameplay.</li>
+        </ul>
+      </div>
+    </div>
+
+    <section class="card">
+      <h2>Audience Research Insights (Digital Ethnography & Surveys)</h2>
+      <p style="margin-bottom: 15px;">During EG 3–4, our group gathered qualitative and quantitative data using three distinct research techniques:</p>
+      
+      <ul class="styled-list">
+        <li><strong>Observation (Digital Ethnography):</strong> Monitored live chats across popular Philippine streaming channels (Mobile Legends, Roblox, Valorant). Findings showed female teen viewers often ask casual questions or request advice, but their messages frequently get buried by fast-paced, aggressive, or toxic chatrooms.</li>
+        <li><strong>Engagement Data (Survey & Interviews):</strong> 78% of teen student respondents stated they watch gameplay streams after school primarily to relax, connect with friends, and learn new skills. Respondents noted feeling alienated by creators who yell or ignore chat.</li>
+        <li><strong>Immersion (Role-Playing):</strong> Role-playing as a 15-year-old student revealed that after a full day of school, viewers feel drained and engage far more actively with warm, humor-filled streams that offer co-op play.</li>
+      </ul>
+    </section>
+
+    <section class="highlight-gold">
+      <h3>Target Viewer Core Need Statement</h3>
+      <blockquote class="need-statement">
+        "Viewers require a non-toxic gaming stream environment that is safe, interactive, and inclusive—where they can relax after school, socialize with like-minded peers, and have fun playing games casually, without being bullied or ignored in chat."
+      </blockquote>
+    </section>
+  </main>
+
+  <!-- PAGE 3: CHARACTERISTICS OF A GOOD STREAM -->
+  <main id="standards" class="page-section">
+    <section class="page-header">
+      <h2>Characteristics of a Good Stream</h2>
+      <p>Comparative analysis benchmarks established from evaluating high vs. low view-count streamers in EG 5–6.</p>
+    </section>
+
+    <div class="card">
+      <h2>Streamer Benchmark Evaluation Matrix</h2>
+      <p style="margin-bottom: 15px;">To ensure our stream maintains professional quality, our group conducted a comparative evaluation between top-performing creators and low-viewership channels:</p>
+
+      <table class="custom-table">
+        <thead>
+          <tr>
+            <th>Feature / Characteristic</th>
+            <th>Top Streamer Benchmark (High Viewer Count)</th>
+            <th>Less Popular Streamer Weakness</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Presentation Style</strong></td>
+            <td>Clear narrative, professional framing, distinct branding overlays.</td>
+            <td>Awkward camera angles, poor lighting, no branding.</td>
+          </tr>
+          <tr>
+            <td><strong>Audio & Video Quality</strong></td>
+            <td>Crisp 1080p video, clear microphone voice cutting above game sound.</td>
+            <td>Muffled microphone, game audio too loud, stream lag.</td>
+          </tr>
+          <tr>
+            <td><strong>Audience Interaction</strong></td>
+            <td>Reads chat continuously, greets new viewers, acknowledges comments live.</td>
+            <td>Rarely checks chat, plays silently for long stretches.</td>
+          </tr>
+          <tr>
+            <td><strong>Stream Organization</strong></td>
+            <td>Structured flow (Intro &rarr; Gameplay &rarr; Q&A &rarr; Wrap-up)[cite: 1].</td>
+            <td>Unplanned, abrupt starts/stops, disorganized transitions.</td>
+          </tr>
+          <tr>
+            <td><strong>Energy & Engagement</strong></td>
+            <td>Consistently energetic, expressive, expressive reactions during slow play.</td>
+            <td>Monotone voice, low speech volume, appears bored.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid-3col">
+      <div class="feature-card">
+        <div style="font-size: 2rem; margin-bottom: 10px;">🎙️</div>
+        <h3>1. Audio Primacy</h3>
+        <p>Microphone audio must be clear, crisp, and balanced so the creator's voice naturally cuts above in-game music and sound effects.</p>
+      </div>
+
+      <div class="feature-card">
+        <div style="font-size: 2rem; margin-bottom: 10px;">💬</div>
+        <h3>2. Active Chat Interaction</h3>
+        <p>Addressing viewers by name, answering questions in real time, and making the audience feel like co-creators of the stream.</p>
+      </div>
+
+      <div class="feature-card">
+        <div style="font-size: 2rem; margin-bottom: 10px;">✨</div>
+        <h3>3. Warm, Expressive Energy</h3>
+        <p>Maintaining enthusiastic commentary and expressive reactions to keep viewers entertained even during slow gameplay moments.</p>
+      </div>
+
+      <div class="feature-card">
+        <div style="font-size: 2rem; margin-bottom: 10px;">🖥️</div>
+        <h3>4. Clean Visual Layout</h3>
+        <p>Well-framed webcam placement, professional lighting, crisp 1080p resolution, and an overlay free from visual clutter.</p>
+      </div>
+
+      <div class="feature-card">
+        <div style="font-size: 2rem; margin-bottom: 10px;">⌛</div>
+        <h3>5. Structured Broadcast Flow</h3>
+        <p>Following a clear broadcast plan: 10m Welcome & Goal Setting, 35m Main Interactive Gameplay, and 15m Wrap-up Q&A.</p>
+      </div>
+
+      <div class="feature-card">
+        <div style="font-size: 2rem; margin-bottom: 10px;">🛡️</div>
+        <h3>6. Active Moderation</h3>
+        <p>Utilizing dedicated chat moderators to filter toxic remarks and keep the environment friendly and safe.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- PAGE 4: RESEARCH JOURNEY -->
+  <main id="journey" class="page-section">
+    <section class="page-header">
+      <h2>Our Complete Research Journey (EG 1 – EG 6)</h2>
+      <p>The step-by-step story of how Group 1 identified, tested, and finalized our streaming concept.</p>
+    </section>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="step-num">01</div>
+        <div>
+          <h3>Experience Guide 1: Discovery & Brainstorming Initial Concepts</h3>
+          <p style="margin-bottom: 10px;">Our journey began by brainstorming broad stream ideas designed to assist students managing academic workload and stress. We explored four initial concepts:</p>
+          <ul class="styled-list">
+            <li>Idea A: "Study With Me" focus sessions paired with relaxing music intervals.</li>
+            <li>Idea B: 60-second social media study hacks for TikTok and Instagram.</li>
+            <li>Idea C: An accountable Discord channel for goal tracking.</li>
+            <li>Idea D: Podcast interviews discussing student burnout and success.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="step-num">02</div>
+        <div>
+          <h3>Experience Guide 2: Technical Platform Evaluation</h3>
+          <p style="margin-bottom: 10px;">We conducted a thorough technical comparison across Twitch, Facebook Gaming, and YouTube. We evaluated interface quality, mobile compatibility, load times, audio/video fidelity, and discoverability. YouTube was chosen due to its superior SEO, permanent VOD archiving, and accessibility for students on mobile data.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="step-num">03</div>
+        <div>
+          <h3>Experience Guides 3–4: Audience Research & Content Options</h3>
+          <p style="margin-bottom: 10px;">Our group investigated three main content categories: Gaming, Vlogging, and Educational Q&A. By surveying our target demographic (15-year-old high school students in the Philippines), we gathered vital demographic, belief, and attitude data.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="step-num">04</div>
+        <div>
+          <h3>Experience Guides 5–6: Design Thinking, Empathy & Quality Standards</h3>
+          <p style="margin-bottom: 10px;">Applying the Empathize stage of Design Thinking, we uncovered a key insight: viewers cared far more about community culture and feeling heard in chat than the streamer's technical skill. We defined our core viewer need statement and benchmarked top stream characteristics to finalize our broadcast structure.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- PAGE 5: MEMBERS & ROLES -->
+  <main id="members" class="page-section">
+    <section class="page-header">
+      <h2>Group 1 Team Roster & Role Assignments</h2>
+      <p>The collaborators behind Blooming Horizons and their contributions across EG 1 – EG 6.</p>
+    </section>
+
+    <div class="grid-3col">
+      <div class="member-card">
+        <span class="member-role">💻 Coder & Designer</span>
+        <h3>Bagtong, Kate Elizabeth Barba</h3>
+        <p>Main Group leader of Group 1 and Spokesperson.</p>
+      </div>
+
+      <div class="member-card">
+        <span class="member-role">📑 Content Organizer</span>
+        <h3>Cambe, Lesley Latoza</h3>
+        <p>Group 1's Assistant leader.</p>
+      </div>
+
+      <div class="member-card">
+        <span class="member-role">📑 Content Organizer</span>
+        <h3>Monforte, Maria Charity Pearl De Leon</h3>
+        <p>Member of Group 1.</p>
+      </div>
+
+      <div class="member-card">
+        <span class="member-role">📑 Content Organizer</span>
+        <h3>Sayas, Janine Ann Alivar</h3>
+        <p>Member of Group 1 and Facilitator under Lifelabs subject.</p>
+      </div>
+
+      <div class="member-card">
+        <span class="member-role">📑 Content Organizer</span>
+        <h3>Frianela, Denver Lynx Reburiano</h3>
+        <p>Member of Group 1.</p>
+      </div>
+
+      <div class="member-card">
+        <span class="member-role">📑 Content Organizer</span>
+        <h3>Bauto, Kane Argiel Abanilla</h3>
+        <p>Member of Group 1.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 Blooming Horizons — Group 1 | Created for IPBA Streaming Portfolio Project.</p>
+  </footer>
+
+  <script>
+    function switchPage(evt, pageId) {
+      if (evt) evt.preventDefault();
+
+      // Hide all page sections
+      const pages = document.querySelectorAll('.page-section');
+      pages.forEach(page => page.classList.remove('active'));
+
+      // Deactivate all navigation links
+      const links = document.querySelectorAll('.nav-link');
+      links.forEach(link => link.classList.remove('active'));
+
+      // Display selected section
+      document.getElementById(pageId).classList.add('active');
+
+      // Highlight clicked link
+      if (evt && evt.target) {
+        evt.target.classList.add('active');
+      }
+    }
+  </script>
+</body>
+</html>
